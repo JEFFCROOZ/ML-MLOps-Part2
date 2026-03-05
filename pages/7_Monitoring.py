@@ -24,9 +24,9 @@ CHART_LAYOUT = dict(
     font=dict(color="#e2e8f0", family="Inter, sans-serif", size=12),
     margin=dict(l=10, r=10, t=30, b=10),
     xaxis=dict(gridcolor="#1e3448", linecolor="#1e3448"),
-    yaxis=dict(gridcolor="#1e3448", linecolor="#1e3448"),
     hovermode="x unified",
 )
+YAXIS_BASE = dict(gridcolor="#1e3448", linecolor="#1e3448")
 
 df_full = get_monitoring_data()
 
@@ -140,7 +140,7 @@ with col_chart1:
     )
     fig_rmse.update_layout(
         **CHART_LAYOUT,
-        yaxis=dict(range=[0.88, 1.18], gridcolor="#1e3448"),
+        yaxis={**YAXIS_BASE, "range": [0.88, 1.18]},
         showlegend=False,
         height=240,
     )
@@ -178,7 +178,7 @@ with col_chart2:
     )
     fig_cov.update_layout(
         **CHART_LAYOUT,
-        yaxis=dict(range=[60, 88], gridcolor="#1e3448"),
+        yaxis={**YAXIS_BASE, "range": [60, 88]},
         showlegend=False,
         height=240,
     )
@@ -218,7 +218,7 @@ fig_genre.update_layout(
     barmode="group",
     legend=dict(orientation="h", y=1.15, x=0),
     height=260,
-    yaxis=dict(title="% of ratings", gridcolor="#1e3448"),
+    yaxis={**YAXIS_BASE, "title": "% of ratings"},
 )
 st.plotly_chart(fig_genre, use_container_width=True)
 
